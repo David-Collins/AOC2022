@@ -11,18 +11,9 @@ public class Day5 {
         part2();
     }
     public static void part1() {
-        List<String> lines = Main.readInputLines("5-stack");
-        List<Stack<Character>> crates = new ArrayList<>();
-        for (String line : lines) {
-            Stack<Character> stack = new Stack<>();
-            for (char c : line.toCharArray()) {
-                stack.push(c);
-            }
-            crates.add(stack);
-        }
-        lines = Main.readInputLines("5");
+        List<Stack<Character>> crates = processStack();
+        List<String> lines = Main.readInputLines("5");
         Pattern reg = Pattern.compile("move\\s([\\d]+)\\sfrom\\s([\\d]+)\\sto\\s([\\d]+)");
-        Map<Integer, Map<Integer, Integer>> coords = new HashMap<>();
         for(String line : lines) {
             Matcher m = reg.matcher(line);
             m.find();
@@ -40,18 +31,9 @@ public class Day5 {
         System.out.println(result);
     }
     public static void part2() {
-        List<String> lines = Main.readInputLines("5-stack");
-        List<Stack<Character>> crates = new ArrayList<>();
-        for (String line : lines) {
-            Stack<Character> stack = new Stack<>();
-            for (char c : line.toCharArray()) {
-                stack.push(c);
-            }
-            crates.add(stack);
-        }
-        lines = Main.readInputLines("5");
+        List<Stack<Character>> crates = processStack();
+        List<String> lines = Main.readInputLines("5");
         Pattern reg = Pattern.compile("move\\s([\\d]+)\\sfrom\\s([\\d]+)\\sto\\s([\\d]+)");
-        Map<Integer, Map<Integer, Integer>> coords = new HashMap<>();
         for(String line : lines) {
             Matcher m = reg.matcher(line);
             m.find();
@@ -71,5 +53,18 @@ public class Day5 {
             result += crate.peek();
         }
         System.out.println(result);
+    }
+
+    public static List<Stack<Character>> processStack() {
+        List<String> lines = Main.readInputLines("5-stack");
+        List<Stack<Character>> crates = new ArrayList<>();
+        for (String line : lines) {
+            Stack<Character> stack = new Stack<>();
+            for (char c : line.toCharArray()) {
+                stack.push(c);
+            }
+            crates.add(stack);
+        }
+        return crates;
     }
 }
