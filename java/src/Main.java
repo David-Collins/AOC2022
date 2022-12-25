@@ -3,6 +3,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
 
@@ -39,5 +41,17 @@ public class Main {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static Matcher applyRegex(String regex, String toTest) {
+        Pattern p = Pattern.compile(regex);
+        Matcher m = p.matcher(toTest);
+        m.find();
+        return m;
+    }
+
+    @FunctionalInterface
+    public interface Function2<One, Two, Three> {
+        public Three apply(One one, Two two);
     }
 }
